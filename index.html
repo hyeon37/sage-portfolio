@@ -4,12 +4,11 @@
 		<title>Untitled★</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="icon" href="../img/goat.png" type="image/x-icon" />
+		<link rel="icon" href="./img/goat.png" type="image/x-icon" />
 
-		<link rel="stylesheet" href="../css/common.css" />
-		
+		<link rel="stylesheet" href="./css/common.css" />
 	</head>
-	</style>
+
 	<body>
 		<div class="contents">
 			<h1>안녕하세요.</h1>
@@ -50,19 +49,19 @@
 					</li>
 					<li>
 						<label for="check1">
-							<input type="checkbox" name="testCheck" id="check1" />
+							<input type="checkbox" name="testCheck" id="check1" value="1" />
 							check1
 						</label>
 						<label for="check2">
-							<input type="checkbox" name="testCheck" id="check2" />
+							<input type="checkbox" name="testCheck" id="check2" value="2" />
 							check2
 						</label>
 						<label for="check3">
-							<input type="checkbox" name="testCheck" id="check3" />
+							<input type="checkbox" name="testCheck" id="check3" value="3" />
 							check3
 						</label>
 						<label for="check4">
-							<input type="checkbox" name="testCheck" id="check4" />
+							<input type="checkbox" name="testCheck" id="check4" value="4" />
 							check4
 						</label>
 						<p id="chkTxt"></p>
@@ -80,35 +79,6 @@
 				</ul>
 			</div>
 		</div>
-
-		<script>
-			//script
-			// window.onload = function() {
-				let ipt = document.getElementById('ipt')
-				, btn = document.getElementById('btn')
-				, rdo = document.querySelector('testRadio')
-				, chk = document.querySelector('testCheck')
-				, slct = document.getElementById('slct')
-				, iptTxt = document.getElementById('iptTxt')
-				, rdoTxt = document.getElementById('rdoTxt')
-				, chkTxt = document.getElementById('chkTxt')
-				, slctTxt = document.getElementById('slctTxt');
-
-				btn.addEventListener('click', function() {
-					iptTxt.innerText = ipt.value;
-				});
-				rdo.addEventListener('change', function() {
-					console.log(rdo.value);
-					rdoTxt.innerText = rdo.value;
-				});
-				chk.addEventListener('change', function() {
-					console.log(chk.value);
-					if(this.checked){
-						chkTxt.innerText = chk.value;
-					}
-				});
-			// }
-		</script>
-		<script src="../js/common.js" ></script>
+		<script src="./js/common.js" ></script>
 	</body>
 </html>
