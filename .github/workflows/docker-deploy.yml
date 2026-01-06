@@ -44,5 +44,5 @@ jobs:
           access_token_lifetime: 500s
           script: |
             cd /home/ubuntu
-            docker-compose pull sage-portfolio
-            docker-compose up -d sage-portfolio
+            docker compose pull ${{ secrets.DOCKER_IMAGE_NAME }}
+            docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
