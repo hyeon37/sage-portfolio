@@ -9,9 +9,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
-  job_id:
-    # Add "id-token" with the intended permissions.
+
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -44,14 +42,13 @@ jobs:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
           access_token_lifetime: 500s
+          script: |
+            cd /home/ubuntu
+            docker compose pull ${{ secrets.DOCKER_IMAGE_NAME }}
+            docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
   
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v3
   
       - name: Use gcloud CLI
         run: gcloud info
-        with:
-          script: |
-            cd /home/ubuntu
-            docker compose pull ${{ secrets.DOCKER_IMAGE_NAME }}
-            docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
