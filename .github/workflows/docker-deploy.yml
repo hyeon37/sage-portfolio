@@ -50,8 +50,6 @@ jobs:
   
       - name: Use gcloud CLI
         run: gcloud info
-
-      - name: Deploy to Docker compose
         with:
           script: |
             cd /home/ubuntu
