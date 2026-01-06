@@ -6,13 +6,15 @@ on:
     branches:
       - master  # master 브랜치에 push 될 때마다 실행
 
-permissions:
-  contents: read
-  id-token: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+  job_id:
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
       - name: Checkout repository
@@ -35,13 +37,22 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
 
-      - name: SSH and deploy on GCP server
+      - id: auth
         uses: google-github-actions/auth@v2
         with:
           token_format: access_token
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
           access_token_lifetime: 500s
+  
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+  
+      - name: Use gcloud CLI
+        run: gcloud info
+
+      - name: Deploy to Docker compose
+        with:
           script: |
             cd /home/ubuntu
             docker compose pull ${{ secrets.DOCKER_IMAGE_NAME }}
