@@ -51,6 +51,6 @@ jobs:
 
       - name: Deploy to Docker compose
         run: |
-          cd /home/ubuntu
+          sudo cd /home/ubuntu
           docker compose pull ${{ secrets.DOCKER_IMAGE_NAME }}
           docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
