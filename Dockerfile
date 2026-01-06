@@ -8,7 +8,7 @@ FROM nginx
 COPY . /usr/share/nginx/html
 
 # Nginx가 사용할 포트 80번을 외부에 노출
-EXPOSE 3000
+#EXPOSE 3000
 
 # 컨테이너가 실행될 때 Nginx 서버를 실행
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]
