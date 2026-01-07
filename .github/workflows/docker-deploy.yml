@@ -42,8 +42,6 @@ jobs:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
           access_token_lifetime: 500s
-          script: |
-            cd /home/ubuntu
   
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v3
@@ -53,5 +51,5 @@ jobs:
 
       - name: Deploy to Docker compose
         run: |
-          docker compose pull ${{ secrets.DOCKER_IMAGE_NAME }}
-          docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
+          sudo docker compose -f ${{ secrets.DOCKER_COMPOSE_PATH }} pull ${{ secrets.DOCKER_IMAGE_NAME }}
+          sudo docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
