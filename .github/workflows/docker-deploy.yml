@@ -49,7 +49,19 @@ jobs:
       - name: Use gcloud CLI
         run: gcloud info
 
-      - name: Deploy to Docker compose
+      - name: Copy files to GCE
         run: |
-          sudo docker compose -f ${{ secrets.DOCKER_COMPOSE_PATH }} pull ${{ secrets.DOCKER_IMAGE_NAME }}
-          sudo docker compose up -d ${{ secrets.DOCKER_IMAGE_NAME }}
+          gcloud compute scp \
+          docker-compose.yml \
+          ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_INSTANCE_NAME }}:${{ secrets.DOCKER_COMPOSE_PATH }} \
+          --zone ${{ secrets.GCP_INSTANCE_ZONE }}
+
+      - name: Deploy to GCE
+        run: |
+          gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_INSTANCE_NAME }} \
+          --zone ${{ secrets.GCP_INSTANCE_ZONE }} \
+          --command "\
+            cd /home/ubuntu && \
+            sudo docker compose -f ${{ secrets.DOCKER_COMPOSE_PATH }} pull ${{ secrets.DOCKER_IMAGE_NAME }} && \
+            sudo docker compose -f ${{ secrets.DOCKER_COMPOSE_PATH }} up -d ${{ secrets.DOCKER_IMAGE_NAME }}"
+
