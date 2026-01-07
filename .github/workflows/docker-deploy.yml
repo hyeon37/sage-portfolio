@@ -49,6 +49,13 @@ jobs:
       - name: Use gcloud CLI
         run: gcloud info
 
+      - name: Copy files to GCE
+        run: |
+          gcloud compute scp \
+          docker-compose.yml \
+          ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_INSTANCE_NAME }}:${{ secrets.GCP_DOCKER_COMPOSE_PATH }}/docker-compose.yml \
+          --zone ${{ secrets.GCP_INSTANCE_ZONE }}
+
       - name: Deploy to GCE
         run: |
           gcloud compute ssh ${{ secrets.GCP_USERNAME }}@${{ secrets.GCP_INSTANCE_NAME }} \
