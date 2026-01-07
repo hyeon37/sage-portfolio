@@ -62,6 +62,6 @@ jobs:
           --zone ${{ secrets.GCP_INSTANCE_ZONE }} \
           --command "\
             cd ${{ secrets.GCP_DOCKER_COMPOSE_PATH }} && \
-            sudo docker compose -f ${{ secrets.DOCKER_COMPOSE_PATH }} pull ${{ secrets.DOCKER_IMAGE_NAME }} && \
-            sudo docker compose -f ${{ secrets.DOCKER_COMPOSE_PATH }} up -d ${{ secrets.DOCKER_IMAGE_NAME }}"
+            sudo docker compose -f docker-compose.yml pull ${{ secrets.DOCKER_IMAGE_NAME }} && \
+            sudo docker compose -f docker-compose.yml up -d ${{ secrets.DOCKER_IMAGE_NAME }}"
 
