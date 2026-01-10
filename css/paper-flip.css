@@ -46,8 +46,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 */
 
 :root {
-  --paper-flip-width: 5rem;
-  --paper-flip-height: 5rem;
+  --paper-flip-width-prev: calc(100% - 20vw);
+  --paper-flip-height-prev: calc(100vh - 10vh);
+  --paper-flip-width-curr: 5rem;
+  --paper-flip-height-curr: 5rem;
   --screen-width: 100%;
   --screen-height: 100vh;
 }
@@ -61,7 +63,8 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 }
 
 .paper,
-.paper .front .paper .back {
+.paper .front,
+.paper .back {
   position: absolute;
   overflow: hidden; /* papers 안에서 넘어가는 내용은 hidden 처리 */
 }
@@ -73,8 +76,62 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   justify-content: center;
 } */
 
-.paper:not(:only-child, .curr) {
+.paper:not(:only-child, .prev, .curr) {
   display: none;
+}
+
+.paper.prev .front {
+  background: rgba(255, 255, 255, 0.3);
+  clip-path: polygon(
+    0 0,
+    var(--screen-width) 0,
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height-prev)),
+    calc(var(--screen-width) - var(--paper-flip-width-prev)) var(--screen-height),
+    0 var(--screen-height)
+  );
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.paper.prev .front.flip * {
+  display: none;
+}
+
+.paper.prev .back {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.3);
+  clip-path: polygon(
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height-prev)),
+    calc(var(--screen-width) - var(--paper-flip-width-prev)) var(--screen-height),
+    calc(
+        var(--screen-width) - var(--paper-flip-width-prev) +
+          calc(
+            var(--paper-flip-width-prev) *
+              cos(
+                calc(
+                  2 * atan2(var(--paper-flip-height-prev), var(--paper-flip-width-prev))
+                )
+              )
+          )
+      )
+      calc(
+        var(--screen-height) -
+          calc(
+            var(--paper-flip-width-prev) *
+              sin(
+                calc(
+                  2 * atan2(var(--paper-flip-height-prev), var(--paper-flip-width-prev))
+                )
+              )
+          )
+      )
+  );
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.paper.prev .back.flip {
+  z-index: 10;
 }
 
 .paper.curr .front {
@@ -82,8 +139,8 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   clip-path: polygon(
     0 0,
     var(--screen-width) 0,
-    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
-    calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height-curr)),
+    calc(var(--screen-width) - var(--paper-flip-width-curr)) var(--screen-height),
     0 var(--screen-height)
   );
   transition-duration: 1s;
@@ -92,20 +149,17 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 
 .paper.curr .back {
   cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
   background: rgba(255, 255, 255, 0.3);
   clip-path: polygon(
-    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
-    calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height-curr)),
+    calc(var(--screen-width) - var(--paper-flip-width-curr)) var(--screen-height),
     calc(
-        var(--screen-width) - var(--paper-flip-width) +
+        var(--screen-width) - var(--paper-flip-width-curr) +
           calc(
-            var(--paper-flip-width) *
+            var(--paper-flip-width-curr) *
               cos(
                 calc(
-                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  2 * atan2(var(--paper-flip-height-curr), var(--paper-flip-width-curr))
                 )
               )
           )
@@ -113,10 +167,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
       calc(
         var(--screen-height) -
           calc(
-            var(--paper-flip-width) *
+            var(--paper-flip-width-curr) *
               sin(
                 calc(
-                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  2 * atan2(var(--paper-flip-height-curr), var(--paper-flip-width-curr))
                 )
               )
           )
@@ -125,7 +179,7 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   transition-duration: 1s;
   transition-timing-function: linear;
 }
-
+/* 
 .paper.curr .front.flip {
   animation-name: page-flip-front;
   animation-duration: 2s;
@@ -266,4 +320,4 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
         )
     );
   }
-}
+} */
