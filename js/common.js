@@ -1,33 +1,15 @@
+const jsFiles = ["./js/scroll-snap.js", "./js/paper-flip.js"];
 
-//script
-window.onload = function() {
-    let ipt = document.getElementById('ipt')
-    , btn = document.getElementById('btn')
-    , rdo = document.getElementsByName('testRadio')
-    , chk = document.getElementsByName('testCheck')
-    , slct = document.getElementById('slct')
-    , iptTxt = document.getElementById('iptTxt')
-    , rdoTxt = document.getElementById('rdoTxt')
-    , chkTxt = document.getElementById('chkTxt')
-    , slctTxt = document.getElementById('slctTxt');
+const importScripts = (files) => {
+  files.forEach((file) => {
+    const el = document.createElement("script");
+    el.src = file + "?v=" + new Date().getTime();
+    el.defer;
+    document.body.appendChild(el);
+  });
+};
 
-    btn.addEventListener('click', function() {
-        iptTxt.innerText = ipt.value;
-    });
-    rdo.forEach(r => {
-        r.addEventListener('change', function() {
-            rdoTxt.innerText = r.value;
-        });
-    })
-    let chkArr = [];
-    chk.forEach(c => {
-        c.addEventListener('change', function() {
-            if(this.checked){
-                chkArr.push(c.value);
-            } else {
-                chkArr.splice(chkArr.indexOf(c.value),1);
-            }
-            chkTxt.innerText = chkArr.join("");
-        });
-    })
-}
+document.addEventListener("DOMContentLoaded", () => {
+  // script 추가
+  importScripts(jsFiles);
+});

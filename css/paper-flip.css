@@ -1,0 +1,269 @@
+/*
+clip-path 를 이용한 종이를 사선으로 넘기는 화면 구현
+     w
+   _____
+  |     |
+h |     | y
+  |_____|
+     x
+front (0 0, 100 0, 100 100-y, 100-x 100, 0 100)
+back (100 100-y, 100 100, 100-x 100)    // 100 100 의 위치가 변함
+if (100-x <= 0)   // 좌하단 모서리 넘어설때
+front (0 0, 100 0, 100 100-y, 0 100-h)
+back (100 100-y, 100 100, 0 100, 0 100-h)   // 100 100, 0 100 의 위치가 변함
+if (100-y <= 0)   // 우상단 모서리 넘어설때
+front (0 0, 100-w 0, 100-x 100, 0 100)
+back (100-w 0, 100 0, 100 100, 100-x 100)   // 100 0, 100 100 의 위치가 변함
+if (100-x <= 0 && 100-y <= 0)   // 좌하단 우상단 모서리 다 넘어설때
+front (0 0, 100-w 0, 0 100-h)
+back (100-w 0, 100 0, 100 100, 0 100, 0 100-h)    // 100 0, 100 100, 0 100 의 위치가 변함
+
+변한 x, y 좌표 기본값
+x 면을 기준으로 계산할 때 가로(x') : x * cos(2 * atan2(y, x))
+x 면을 기준으로 계산할 때 세로(y') : x * sin(2 * atan2(y, x))
+y 면을 기준으로 계산할 때 가로(x') : y * sin(2 * atan2(y, x))
+y 면을 기준으로 계산할 때 세로(y') : y * cos(2 * atan2(y, x))
+
+atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌하단의 각도
+    /|
+   / |
+  /  | y
+ /___|
+   x
+이걸 * 2 하면 접었을 때 생기는 각도를 기준으로 x', y' 위치를 알 수 있음
+
+삼각형을 이루는 점이 변화하는 위치는 우상단과 좌하단 두개로 가로와 세로의 합친 길이에서 움직이는것과 같음
+좌하단에서 움직이는 점을 a, 우상단에서 움직이는 점을 b 라고 했을 때 이 점이 움직이는 길이는
+0 <= a <= x+h
+0 <= b <= w+y
+를 벗어날 수 없음 (이때 0은 우하단의 모서리 꼭지점을 기준으로 함)
+
+그럼 위에서 나열한 모서리를 넘어서는 조건은 a > x, b > y 가 됨
+
+여기서 atan2는 [(y, x), (y-h, x), (y, x-w), (y-h, x-w)] 로
+[삼각형, 좌하단이 넘어선 사각형, 우상단이 넘어선 사각형, 좌하단 우상단 모두 넘어선 오각형]
+로 이해함
+*/
+
+:root {
+  --paper-flip-width: 5rem;
+  --paper-flip-height: 5rem;
+  --screen-width: 100%;
+  --screen-height: 100vh;
+}
+
+.papers,
+.papers .paper,
+.papers .paper .front,
+.papers .paper .back {
+  width: 100%; /* 사이즈는 필요한 대로 처리 */
+  height: 100%; /* 사이즈는 필요한 대로 처리 */
+}
+
+.paper,
+.paper .front .paper .back {
+  position: absolute;
+  overflow: hidden; /* papers 안에서 넘어가는 내용은 hidden 처리 */
+}
+
+/* .paper:only-child,
+.paper.curr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.paper:not(:only-child, .curr) {
+  display: none;
+}
+
+.paper.curr .front {
+  background: rgba(255, 255, 255, 0.3);
+  clip-path: polygon(
+    0 0,
+    var(--screen-width) 0,
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+    calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+    0 var(--screen-height)
+  );
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.paper.curr .back {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.3);
+  clip-path: polygon(
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+    calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+    calc(
+        var(--screen-width) - var(--paper-flip-width) +
+          calc(
+            var(--paper-flip-width) *
+              cos(
+                calc(
+                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                )
+              )
+          )
+      )
+      calc(
+        var(--screen-height) -
+          calc(
+            var(--paper-flip-width) *
+              sin(
+                calc(
+                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                )
+              )
+          )
+      )
+  );
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.paper.curr .front.flip {
+  animation-name: page-flip-front;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  clip-path: polygon(
+    0 0,
+    var(--screen-width) 0,
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+    calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+    0 var(--screen-height)
+  );
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+.paper.curr .back.flip {
+  animation-name: page-flip-back;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  clip-path: polygon(
+    var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+    calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+    calc(
+        var(--screen-width) - var(--paper-flip-width) +
+          calc(
+            var(--paper-flip-width) *
+              cos(
+                calc(
+                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                )
+              )
+          )
+      )
+      calc(
+        var(--screen-height) -
+          calc(
+            var(--paper-flip-width) *
+              sin(
+                calc(
+                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                )
+              )
+          )
+      )
+  );
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+@keyframes page-flip-front {
+  0% {
+    --paper-flip-width: 1em;
+    --paper-flip-height: 1em;
+    clip-path: polygon(
+      0 0,
+      var(--screen-width) 0,
+      var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+      calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+      0 var(--screen-height)
+    );
+  }
+
+  100% {
+    --paper-flip-width: 10em;
+    --paper-flip-height: 10em;
+    clip-path: polygon(
+      0 0,
+      var(--screen-width) 0,
+      var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+      calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+      0 var(--screen-height)
+    );
+  }
+}
+
+@keyframes page-flip-back {
+  0% {
+    --paper-flip-width: 1em;
+    --paper-flip-height: 1em;
+    clip-path: polygon(
+      var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+      calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+      calc(
+          var(--screen-width) - var(--paper-flip-width) +
+            calc(
+              var(--paper-flip-width) *
+                cos(
+                  calc(
+                    2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  )
+                )
+            )
+        )
+        calc(
+          var(--screen-height) -
+            calc(
+              var(--paper-flip-width) *
+                sin(
+                  calc(
+                    2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  )
+                )
+            )
+        )
+    );
+  }
+
+  100% {
+    --paper-flip-width: 10em;
+    --paper-flip-height: 10em;
+    clip-path: polygon(
+      var(--screen-width) calc(var(--screen-height) - var(--paper-flip-height)),
+      calc(var(--screen-width) - var(--paper-flip-width)) var(--screen-height),
+      calc(
+          var(--screen-width) - var(--paper-flip-width) +
+            calc(
+              var(--paper-flip-width) *
+                cos(
+                  calc(
+                    2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  )
+                )
+            )
+        )
+        calc(
+          var(--screen-height) -
+            calc(
+              var(--paper-flip-width) *
+                sin(
+                  calc(
+                    2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  )
+                )
+            )
+        )
+    );
+  }
+}

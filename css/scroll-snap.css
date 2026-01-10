@@ -1,0 +1,36 @@
+/* 스크롤 스냅 컨테이너 */
+.scroll-container {
+  overflow: auto;
+  scroll-snap-type: y mandatory; /* y 축 방향으로만 scroll snap 적용 */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 스크롤 스냅 컨테이너 css */
+.scroll-container {
+  width: 100%;
+  height: 100svh; /* 전체 화면 감싸는 용도 */
+  position: relative;
+}
+
+/* 스크롤 스냅 컨테이너 안에서 이동할 테마 영역 */
+.scroll-section-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 테마 영역 내에서 실제 스크롤 스냅이 될 정보 화면 */
+.scroll-section-area-inner {
+  scroll-snap-align: start; /* 스크롤 위치 맞춤 */
+  scroll-snap-stop: always;
+  overflow-y: hidden; /* 화면상에 꽉 차게 하고싶다면 hidden, 화면 내에서 별도의 길이를 주고싶다면 auto */
+  overflow-x: hidden; /* 세로 기준이라 가로는 hidden 고정 */
+}
+
+/* 스크롤 스냅 정보 화면 css */
+.scroll-section-area-inner {
+  width: 100%;
+  height: 100vh;
+}
