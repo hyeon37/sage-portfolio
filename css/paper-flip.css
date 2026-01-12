@@ -64,14 +64,14 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 */
 
 :root {
-  --screen-width: 500px;
-  --screen-height: 500px;
+  --screen-width: 100%;
+  --screen-height: 100dvh;
   --paper-flip-width-prev: calc(var(--screen-width) - 20vw);
   --paper-flip-height-prev: calc(var(--screen-height) - 10dvh);
   --paper-flip-width-curr: 10rem;
   --paper-flip-height-curr: 10rem;
-  --paper-width: 600px;
-  --paper-height: 500px;
+  --paper-width: 100%;
+  --paper-height: 100dvh;
   --paper-clip-width: 10rem;
   --paper-clip-height: 5rem;
   --paper-flip-width: 10rem;
@@ -81,11 +81,11 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 .papers {
   width: var(--paper-width); /* 사이즈는 필요한 대로 처리 */
   height: var(--paper-height); /* 사이즈는 필요한 대로 처리 */
-  top: 250px;
-  left: 250px;
-  /* width: 100%;
+  /* top: 250px;
+  left: 250px; */
+  /* width: 100%; */
   height: 100vh;
-  height: 100dvh; */
+  height: 100dvh;
   position: relative;
 }
 
@@ -94,7 +94,7 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 .papers .paper .back {
   width: 100%; /* 사이즈는 필요한 대로 처리 */
   height: 100%;  /* 사이즈는 필요한 대로 처리 */
-  /* height: 100dvh; */
+  height: 100dvh;
 }
 
 .paper,
@@ -104,14 +104,14 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   overflow: hidden; /* papers 안에서 넘어가는 내용은 hidden 처리 */
 }
 
-/* .paper:only-child,
+.paper:only-child,
 .paper.curr {
   display: flex;
   align-items: center;
   justify-content: center;
-} */
+}
 
-.paper:not(:last-child).on {
+/* .paper:not(:last-child).on {
   background: rgba(255, 255, 255, 0.3);
   clip-path: polygon(
     0 0,
@@ -203,8 +203,8 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   );
   transition-duration: 1s;
   transition-timing-function: linear;
-}
-/* 
+} */
+
 .paper:not(:only-child, .prev, .curr) {
   display: none;
 }
@@ -307,4 +307,4 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   );
   transition-duration: 1s;
   transition-timing-function: linear;
-} */
+}
