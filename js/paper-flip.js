@@ -11,7 +11,7 @@ const initPaperFlip = () => {
         );
         document.documentElement.style.setProperty(
           "--paper-flip-height-curr",
-          "calc(100vh - 10vh)"
+          "calc(100dvh - 10dvh)"
         );
         console.log("e", event, event.target);
         const t = setTimeout(() => {
@@ -26,7 +26,7 @@ const initPaperFlip = () => {
           );
           document.documentElement.style.setProperty(
             "--paper-flip-height-prev",
-            "calc(100vh - 10vh)"
+            "calc(100dvh - 10dvh)"
           );
           document.documentElement.style.setProperty(
             "--paper-flip-width-curr",
@@ -71,7 +71,7 @@ const initPaperFlip = () => {
         );
         document.documentElement.style.setProperty(
           "--paper-flip-height-prev",
-          "calc(100vh - 10vh)"
+          "calc(100dvh - 10dvh)"
         );
         event.target.parentElement.previousElementSibling?.classList.add("prev");
         Array.from(event.target.parentElement.previousElementSibling?.children || []).forEach((child) => {
