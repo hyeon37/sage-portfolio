@@ -46,12 +46,12 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 */
 
 :root {
-  --paper-flip-width-prev: calc(100% - 20vw);
-  --paper-flip-height-prev: calc(100% - 10vh);
+  --paper-flip-width-prev: calc(100vw - 20vw);
+  --paper-flip-height-prev: calc(100vh - 10vh);
   --paper-flip-width-curr: 10rem;
   --paper-flip-height-curr: 10rem;
   --screen-width: 100%;
-  --screen-height: 100%;
+  --screen-height: 100vh;
 }
 
 .papers,
