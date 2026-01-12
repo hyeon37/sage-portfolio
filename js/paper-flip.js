@@ -1,6 +1,11 @@
 // 초기 화면 설정
 const initPaperFlip = () => {
   let backs = document.querySelectorAll(".back");
+  let onflip = document.querySelector(".paper.on");
+  onflip.addEventListener("click", (event) => {
+    console.log("onflip", event.target);
+    event.target.classList.add("flip");
+  });
   backs.forEach((back) => {
     back.addEventListener("click", (event) => {
       console.log("back", event.target);
