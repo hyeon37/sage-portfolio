@@ -59,7 +59,8 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 .papers .paper .front,
 .papers .paper .back {
   width: 100%; /* 사이즈는 필요한 대로 처리 */
-  min-height: 100svh; /* 사이즈는 필요한 대로 처리 */
+  height: 100vh; /* 사이즈는 필요한 대로 처리 */
+  min-height: 100svh;
   max-height: 100lvh;
 }
 
