@@ -67,9 +67,9 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   --screen-width: 100%;
   --screen-height: 100dvh;
   /*--paper-flip-width-prev: calc(var(--screen-width) - 20vw);*/
-  --paper-flip-width-prev: 5rem;
+  --paper-flip-width-prev: 60rem;
   /*--paper-flip-height-prev: calc(var(--screen-height) - 10dvh);*/
-  --paper-flip-height-prev: 3rem;
+  --paper-flip-height-prev: 40rem;
   --paper-flip-width-curr: 10rem;
   --paper-flip-height-curr: 10rem;
   --paper-width: 50rem;

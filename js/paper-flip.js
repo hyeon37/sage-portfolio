@@ -19,26 +19,49 @@ const initPaperFlip = (uSettings = {}, target = null) => {
   console.log("uSettings",uSettings);
   uSettings = {...settings, ...uSettings};
   console.log("uSettings2",uSettings);
-  let onflip = document.querySelector(".paper.on");
-  onflip.addEventListener("click", (event) => {
-    console.log("onflip", event.target);
+  let paper = document.querySelector(".paper.on");
+  paper.addEventListener("click", (event) => {
+    console.log("paper", event.target);
     const target = event.target;
-    target.classList.contains("flip") ? target.classList.remove("flip") : target.classList.add("flip");
-    let count = 0;
-    const itv = setInterval(function() {
-      const clipPath = window.getComputedStyle(target).clipPath;
-      console.log("clip-path polygon", clipPath);
-      if (clipPath.includes('polygon')) {
-        // polygon(...) 안의 내용만 추출
-        const points = clipPath.match(/polygon\((.*)\)/)[1];
-        console.log("좌표:", points); // "50% 0%, 100% 100%, 0% 100%"
-      }
-      count++;
-      if (count > 2) {
-        clearInterval(itv);
-      }
-    }, 500);
+    target.classList.toggle("flip");
+    // let count = 0;
+    // const itv = setInterval(function() {
+    //   const clipPath = window.getComputedStyle(target).clipPath;
+    //   console.log("clip-path polygon", clipPath);
+    //   if (clipPath.includes('polygon')) {
+    //     // polygon(...) 안의 내용만 추출
+    //     const points = clipPath.match(/polygon\((.*)\)/)[1];
+    //     console.log("좌표:", points); // "50% 0%, 100% 100%, 0% 100%"
+    //   }
+    //   count++;
+    //   if (count > 2) {
+    //     clearInterval(itv);
+    //   }
+    // }, 500);
   });
+
+  paper.addEventListener('transitionend', (event) => {
+    if (event.propertyName === 'clip-path') {
+      console.log('Transition 완료', event);
+    }
+  });
+  paper.addEventListener('transitionstart', (event) => {
+    if (event.propertyName === 'clip-path') {
+      console.log('Transition 시작', event);
+    }
+  });
+  paper.addEventListener('transitionrun', (event) => {
+    if (event.propertyName === 'clip-path') {
+      console.log('Transition 실행', event);
+    }
+  });
+  paper.addEventListener('transitioncancel', (event) => {
+    if (event.propertyName === 'clip-path') {
+      console.log('Transition 취소', event);
+    }
+  });
+
+
   // backs.forEach((back) => {
   //   back.addEventListener("click", (event) => {
   //     console.log("back", event.target);
