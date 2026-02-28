@@ -87,7 +87,6 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   height: 100vh;
   height: 100dvh; */
   position: relative;
-  pointer-events: none;
 }
 
 .papers .paper,
@@ -99,6 +98,17 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 
 .paper {
   position: absolute;
+  opacity: 1;
+  pointer-events: none;
+}
+.paper.on {
+  z-index: 1;
+}
+.paper.flip::after {
+  z-index: 2;
+}
+.paper:not(:only-child, .on, .flip) {
+ display: none;
 }
 /* .paper,
 .paper .front,
@@ -107,8 +117,7 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   overflow: hidden; papers 안에서 넘어가는 내용은 hidden 처리
 } */
 
-.paper:only-child,
-.paper.on {
+.paper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,10 +174,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   transition-timing-function: linear;
 }
 
-.paper:not(.on, .flip, :only-child),
+/* .paper:not(.on, .flip, :only-child),
 .paper:not(.on, .flip)::after {
   display: none;
-}
+} */
 
 .paper.flip {
   clip-path: polygon(
