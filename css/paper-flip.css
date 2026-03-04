@@ -70,6 +70,8 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   --paper-flip-height: 10rem;
   --paper-clip-width: 15rem;
   --paper-clip-height: 10rem;
+  --paper-over-width: calc(((var(--paper-height) - var(--paper-clip-height)) / var(--paper-clip-height)) * var(--paper-clip-width));
+  --paper-over-height: calc(((var(--paper-width) - var(--paper-clip-width)) / var(--paper-clip-width)) * var(--paper-clip-height));
 }
 
 .papers {
@@ -91,14 +93,17 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   opacity: 1;
   pointer-events: none;
 }
+
 .paper.on {
   z-index: 1;
 }
+
 .paper.flip::after {
   z-index: 2;
 }
+
 .paper:not(:only-child, .on, .flip) {
- display: none;
+  display: none;
 }
 
 .paper {
@@ -110,11 +115,11 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 .paper:not(:last-child) {
   background: rgba(255, 255, 255, 0.3);
   clip-path: polygon(
-    0 0,
-    var(--paper-width) 0,
-    var(--paper-width) calc(var(--paper-height) - var(--paper-flip-height)),
-    calc(var(--paper-width) - var(--paper-flip-width)) var(--paper-height),
-    0 var(--paper-height)
+      0 0,
+      var(--paper-width) 0,
+      var(--paper-width) calc(var(--paper-height) - var(--paper-flip-height)),
+      calc(var(--paper-width) - var(--paper-flip-width)) var(--paper-height),
+      0 var(--paper-height)
   );
   transition-duration: 1s;
   transition-timing-function: linear;
@@ -129,30 +134,17 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   pointer-events: all;
   cursor: pointer;
   clip-path: polygon(
-    calc(
-        var(--paper-width) - var(--paper-flip-width) +
-          calc(
-            var(--paper-flip-width) *
-              cos(
-                calc(
-                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
-                )
-              )
-          )
-      )
       calc(
-        var(--paper-height) -
-          calc(
-            var(--paper-flip-width) *
-              sin(
-                calc(
-                  2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
-                )
-              )
-          )
+          var(--paper-width) - var(--paper-flip-width) +
+          (var(--paper-flip-width) *
+          cos(2 * atan2(var(--paper-flip-height), var(--paper-flip-width))))
+      ) calc(
+          var(--paper-height) -
+          (var(--paper-flip-width) *
+          sin(2 * atan2(var(--paper-flip-height), var(--paper-flip-width))))
       ),
-    var(--paper-width) calc(var(--paper-height) - var(--paper-flip-height)),
-    calc(var(--paper-width) - var(--paper-flip-width)) var(--paper-height)
+      var(--paper-width) calc(var(--paper-height) - var(--paper-flip-height)),
+      calc(var(--paper-width) - var(--paper-flip-width)) var(--paper-height)
   );
   transition-duration: 1s;
   transition-timing-function: linear;
@@ -160,19 +152,17 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 
 .paper.flip {
   clip-path: polygon(
-    0 0,
-    var(--paper-width) 0,
-    var(--paper-width)
-      calc(
-        var(--paper-height) -
-          calc(calc(var(--paper-height) * 2) - var(--paper-clip-height))
+      0 0,
+      var(--paper-width) 0,
+      var(--paper-width) calc(
+          var(--paper-height) -
+          ((var(--paper-height) * 2) - var(--paper-clip-height))
       ),
-    calc(
-        var(--paper-width) -
-          calc(calc(var(--paper-width) * 2) - var(--paper-clip-width))
-      )
-      var(--paper-height),
-    0 var(--paper-height)
+      calc(
+          var(--paper-width) -
+          ((var(--paper-width) * 2) - var(--paper-clip-width))
+      ) var(--paper-height),
+      0 var(--paper-height)
   );
   transition-duration: 1s;
   transition-timing-function: linear;
@@ -180,39 +170,12 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 
 .paper.flip::after {
   clip-path: polygon(
-    calc(
-        var(--paper-clip-width) -
-          calc(
-            hypot(var(--paper-width), var(--paper-height)) *
-              cos(
-                calc(
-                  2 * atan2(var(--paper-clip-height), var(--paper-clip-width))
-                )
-              )
-          )
-      )
-      calc(
-        var(--paper-clip-height) -
-          calc(
-            hypot(var(--paper-width), var(--paper-height)) *
-              sin(
-                calc(
-                  2 * atan2(var(--paper-clip-height), var(--paper-clip-width))
-                )
-              )
-          )
-      ),
-    var(--paper-width)
-      calc(
-        var(--paper-height) -
-          calc(calc(var(--paper-height) * 2) - var(--paper-clip-height))
-      ),
-    calc(
-        var(--paper-width) -
-          calc(calc(var(--paper-width) * 2) - var(--paper-clip-width))
-      )
-      var(--paper-height)
-  );
+      calc((0% - var(--paper-over-width)) - ((var(--paper-width) + var(--paper-over-width))
+      * cos(2 * atan2(var(--paper-clip-width), var(--paper-clip-height))))) calc(
+          (var(--paper-height) - ((var(--paper-width) + var(--paper-over-width))
+          * sin(2 * atan2(var(--paper-clip-width), var(--paper-clip-height)))))),
+      var(--paper-width) calc(0% - ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-width), var(--paper-clip-height))))),
+      calc(0% - ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-width), var(--paper-clip-height))))) var(--paper-height));
   transition-duration: 1s;
   transition-timing-function: linear;
 }
