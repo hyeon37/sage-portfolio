@@ -94,11 +94,12 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 .paper.on {
   z-index: 1;
 }
-.paper.flip::after {
+.paper.flip {
   z-index: 2;
 }
-.paper:not(:only-child, .on, .flip) {
- display: none;
+.paper:not(:only-child, .on, .flip),
+.paper:last-child {
+ z-index: 0;
 }
 
 .paper {
@@ -108,7 +109,8 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 }
 
 .paper:not(:last-child) {
-  background: rgba(255, 255, 255, 0.3);
+  background: --backgroundWithLoseColor(var(--bg-color), 0.1);
+  background: var(--paper-color);
   clip-path: polygon(
     0 0,
     var(--paper-width) 0,
@@ -121,11 +123,12 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 }
 
 .paper:not(:last-child)::after {
+  background: --backgroundWithLoseColor(var(--bg-color), 0.2);
+  background: var(--paper-flip-color);
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.3);
   pointer-events: all;
   cursor: pointer;
   clip-path: polygon(

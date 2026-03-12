@@ -1,78 +1,86 @@
 @import url("import.css?v=260110");
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
-    font-weight: 100;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
-    font-weight: 200;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
-    font-weight: 900;
-    font-display: swap;
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
+@function --backgroundWithLoseColor(--hex, --value) {
+  result: oklch(from var(--hex) calc(l + var(--value)) c h);
 }
 
 :root {
+  --theme-color: #48683d;
   --theme-color-1: #48683d;
   --theme-color-2: #7ca55b;
   --theme-color-3: #a3c430;
   --theme-color-4: #f6efaa;
   --theme-color-5: #ffffff;
+  --bg-color: #7ca55b;
   --bg-color-1: #7ca55b;
   --bg-color-2: #567571;
   --bg-color-3: #766a7e;
   --bg-color-4: #9d202f;
+  --paper-color: #9ac579;
+  --paper-flip-color: #bae699;
   --font-size-extra-large: 12.8rem;
   --font-size-large: 6.4rem;
   --font-size-normal: 3.2rem;
@@ -253,23 +261,78 @@ html {
   font-size: var(--font-size-extra-large);
 }
 
+.paper:not(:only-child, .on, .flip) .content-area {
+ z-index: 0;
+}
+
 /* scroll-section background */
 .scroll-section-area:nth-of-type(1) {
   /* background: #49b293; */
   background: var(--bg-color-1);
+  --bg-color: var(--bg-color-1);
+  --paper-color: #9ac579;
+  --paper-flip-color: #bae699;
 }
 
 .scroll-section-area:nth-of-type(2) {
   /* background: #c94e4b; */
   background: var(--bg-color-2);
+  --bg-color: var(--bg-color-2);
+  --paper-color: #73938f;
+  --paper-flip-color: #91b2ad;
 }
 
 .scroll-section-area:nth-of-type(3) {
   /* background: #4cc1be; */
   background: var(--bg-color-3);
+  --bg-color: var(--bg-color-3);
+  --paper-color: #94879c;
+  --paper-flip-color: #b3a6bb;
 }
 
 .scroll-section-area:nth-of-type(4) {
   /* background: #8360A6; */
   background: var(--bg-color-4);
+  --bg-color: var(--bg-color-4);
+  --paper-color: #bf434a;
+  --paper-flip-color: #e26367;
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  .scroll-container,
+  .scroll-section-area-inner,
+  .papers {
+    height: auto;
+    overflow: visible;
+  }
+
+  .scroll-section-area-inner:first-child {
+    page-break-before: avoid;
+  }
+
+  .scroll-section-area {
+    /* 배경색/이미지 출력 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .paper,
+  .paper::after {
+    height: 100vh;
+    position: relative;
+    /* page-break-before: always; */
+    /* 요소가 페이지 중간에 잘리지 않도록 함 */
+    /* page-break-inside: avoid; */
+    /* 이 클래스 뒤에서 무조건 페이지를 나눔 */
+    /* page-break-after: always; */
+  }
+
+  .content-area {
+    height: 100vh;
+  }
 }

@@ -27,15 +27,7 @@ const initPaperFlip = (uSettings = {}) => {
       } else {
         target.classList.toggle("flip");
         target.classList.toggle("on");
-      }
-    });
-    paper.addEventListener('transitionend', (event) => {
-      if (event.propertyName === 'clip-path') {
-        const target = event.target;
-        if (target.classList.contains("on")) {
-        } else {
-          target.nextElementSibling?.classList.add("on");
-        }
+        target.nextElementSibling?.classList.add("on");
       }
     });
   });
@@ -49,9 +41,6 @@ const pxToRem = (px) => `${px / rootFontSize}rem`;
 
 // 3. rem -> px 변환 함수
 const remToPx = (rem) => `${rem * rootFontSize}px`;
-
-console.log(pxToRem(32)); // "2rem" (16px 기준)
-console.log(remToPx(1.5)); // "24px" (16px 기준)
 
 initPaperFlip({
   paperWidth: '10rem',
