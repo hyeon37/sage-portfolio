@@ -261,10 +261,6 @@ html {
   font-size: var(--font-size-extra-large);
 }
 
-.paper:not(:only-child, .on, .flip) .content-area {
- z-index: 0;
-}
-
 /* scroll-section background */
 .scroll-section-area:nth-of-type(1) {
   /* background: #49b293; */
