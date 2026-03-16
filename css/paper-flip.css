@@ -184,27 +184,23 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 .paper.flip::after {
   clip-path: polygon(
     calc(
-        var(--paper-clip-width) -
-          (
-            hypot(var(--paper-width), var(--paper-height)) *
-              cos(
-                (
-                  2 * atan2(var(--paper-clip-height), var(--paper-clip-width))
-                )
-              )
-          )
-      )
+        ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width))) * -1)
+      + (
+        hypot(
+          (var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
+        ,(var(--paper-height) + ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
+        )
+        * cos(2 * atan2(var(--paper-clip-height), var(--paper-clip-width))))
+    )
       calc(
-        var(--paper-clip-height) -
-          (
-            hypot(var(--paper-width), var(--paper-height)) *
-              sin(
-                (
-                  2 * atan2(var(--paper-clip-height), var(--paper-clip-width))
-                )
-              )
-          )
-      ),
+        var(--paper-height)
+        - (
+        hypot(
+        (var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
+        ,(var(--paper-height) + ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
+        )
+        * sin(2 * atan2(var(--paper-clip-height), var(--paper-clip-width))))
+    ),
     var(--paper-width)
       calc(
         var(--paper-height) -
