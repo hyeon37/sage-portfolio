@@ -186,22 +186,25 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
     calc(
         ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width))) * -1)
       + (
-        hypot(
-          (var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
-        ,(var(--paper-height) + ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
-        )
+        ((var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width))))) / cos(atan2(var(--paper-clip-height), var(--paper-clip-width))))
+        /*hypot(*/
+        /*  (var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))*/
+        /*,(var(--paper-height) + ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))*/
+        /*)*/
         * cos(2 * atan2(var(--paper-clip-height), var(--paper-clip-width))))
     )
       calc(
         var(--paper-height)
         - (
-        hypot(
-        (var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
-        ,(var(--paper-height) + ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))
-        )
+        ((var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width))))) / cos(atan2(var(--paper-clip-height), var(--paper-clip-width))))
+        /*hypot(*/
+        /*(var(--paper-width) + ((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))*/
+        /*,(var(--paper-height) + ((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))))*/
+        /*)*/
         * sin(2 * atan2(var(--paper-clip-height), var(--paper-clip-width))))
     ),
     var(--paper-width)
+    /*calc(((var(--paper-width) - var(--paper-clip-width)) * tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))) * -1),*/
       calc(
         var(--paper-height) -
           ((var(--paper-height) * 2) - var(--paper-clip-height))
@@ -210,6 +213,7 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
         var(--paper-width) -
           ((var(--paper-width) * 2) - var(--paper-clip-width))
       )
+      /*calc(((var(--paper-height) - var(--paper-clip-height)) / tan(atan2(var(--paper-clip-height), var(--paper-clip-width)))) * -1)*/
       var(--paper-height)
   );
   transition-duration: 1s;
