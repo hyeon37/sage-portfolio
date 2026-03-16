@@ -134,10 +134,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   clip-path: polygon(
     calc(
         var(--paper-width) - var(--paper-flip-width) +
-          calc(
+          (
             var(--paper-flip-width) *
               cos(
-                calc(
+                (
                   2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
                 )
               )
@@ -145,10 +145,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
       )
       calc(
         var(--paper-height) -
-          calc(
+          (
             var(--paper-flip-width) *
               sin(
-                calc(
+                (
                   2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
                 )
               )
@@ -168,11 +168,11 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
     var(--paper-width)
       calc(
         var(--paper-height) -
-          calc(calc(var(--paper-height) * 2) - var(--paper-clip-height))
+          ((var(--paper-height) * 2) - var(--paper-clip-height))
       ),
     calc(
         var(--paper-width) -
-          calc(calc(var(--paper-width) * 2) - var(--paper-clip-width))
+          ((var(--paper-width) * 2) - var(--paper-clip-width))
       )
       var(--paper-height),
     0 var(--paper-height)
@@ -185,10 +185,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   clip-path: polygon(
     calc(
         var(--paper-clip-width) -
-          calc(
+          (
             hypot(var(--paper-width), var(--paper-height)) *
               cos(
-                calc(
+                (
                   2 * atan2(var(--paper-clip-height), var(--paper-clip-width))
                 )
               )
@@ -196,10 +196,10 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
       )
       calc(
         var(--paper-clip-height) -
-          calc(
+          (
             hypot(var(--paper-width), var(--paper-height)) *
               sin(
-                calc(
+                (
                   2 * atan2(var(--paper-clip-height), var(--paper-clip-width))
                 )
               )
@@ -208,11 +208,11 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
     var(--paper-width)
       calc(
         var(--paper-height) -
-          calc(calc(var(--paper-height) * 2) - var(--paper-clip-height))
+          ((var(--paper-height) * 2) - var(--paper-clip-height))
       ),
     calc(
         var(--paper-width) -
-          calc(calc(var(--paper-width) * 2) - var(--paper-clip-width))
+          ((var(--paper-width) * 2) - var(--paper-clip-width))
       )
       var(--paper-height)
   );
