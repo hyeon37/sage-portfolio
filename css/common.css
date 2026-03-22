@@ -1,64 +1,73 @@
 @import url("import.css?v=260110");
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2")
+    format("woff2");
   font-weight: 100;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2")
+    format("woff2");
   font-weight: 200;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2")
+    format("woff2");
   font-weight: 300;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2")
+    format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2")
+    format("woff2");
   font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2")
+    format("woff2");
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2")
+    format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2")
+    format("woff2");
   font-weight: 800;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2")
+    format("woff2");
   font-weight: 900;
   font-display: swap;
 }
@@ -81,37 +90,21 @@
   --bg-color-4: #9d202f;
   --paper-color: #9ac579;
   --paper-flip-color: #bae699;
-  --font-size-extra-large: 12.8rem;
-  --font-size-large: 6.4rem;
-  --font-size-normal: 3.2rem;
-  --font-size-small: 2rem;
-  --font-size-page-header-main: 6.4rem;
-  --font-size-page-header-mid: 4.8rem;
-  --font-size-page-header-sub: 3.6rem;
-  --font-size-page-body-main: 6rem;
-  --font-size-page-body-mid: 4rem;
-  --font-size-page-body-sub: 3.2rem;
+  --font-size-2xl: 12.8rem;
+  --font-size-xl: 6.4rem;
+  --font-size-l: 6rem;
+  --font-size-ml: 4.8rem;
+  --font-size-m: 4rem;
+  --font-size-ms: 3.6rem;
+  --font-size-s: 3.2rem;
+  --font-size-xs: 3rem;
+  --font-size-2xs: 2.6rem;
+  --font-size-3xs: 2.2rem;
 }
 
 html {
   font-size: 1vmin;
   font-family: "Pretendard";
-}
-
-.txt-size-extra-large {
-  font-size: var(--font-size-extra-large);
-}
-
-.txt-size-large {
-  font-size: var(--font-size-large);
-}
-
-.txt-size-normal {
-  font-size: var(--font-size-normal);
-}
-
-.txt-size-small {
-  font-size: var(--font-size-small);
 }
 
 .bold {
@@ -221,13 +214,13 @@ html {
 }
 
 .appeal-message .main {
-  font-size: var(--font-size-extra-large);
+  font-size: var(--font-size-2xl);
   font-weight: 700;
   min-width: 45rem;
 }
 
 .appeal-message .summary {
-  font-size: var(--font-size-normal);
+  font-size: var(--font-size-s);
   color: var(--theme-color-3);
   list-style-type: disc;
   list-style-position: inside;
@@ -244,7 +237,7 @@ html {
 
 .pr-message {
   color: var(--theme-color-5);
-  font-size: var(--font-size-page-body-mid);
+  font-size: var(--font-size-m);
   line-height: 1.2;
 }
 
@@ -255,7 +248,7 @@ html {
 }
 
 .pr-message.line::before {
-  content: '';
+  content: "";
   flex-grow: 1;
   height: 0.4rem;
   line-height: 0;
@@ -264,96 +257,135 @@ html {
 }
 
 .paper {
-  font-size: var(--font-size-extra-large);
+  font-size: var(--font-size-2xl);
 }
 
-/* 자기소개 */
-.sage-info {
+/* 영역 헤더 */
+.content-area .outline {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--theme-color-5);
+  margin-top: -6.4rem;
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.content-area .outline span {
+  font-size: var(--font-size-ms);
+}
+
+/* 각 페이지 컨텐츠 */
+.info {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 5rem;
   color: var(--theme-color-5);
+  margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
-.sage-info .intro {
+.info .left-area,
+.info .right-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  gap: 5rem;
+}
+
+.info .intro {
   display: flex;
   flex-direction: row;
   gap: 5rem;
   align-items: center;
 }
 
-.sage-info .intro .logo {
+.info .intro .logo {
   display: flex;
   flex-direction: column;
 }
-.sage-info .intro .logo img {
-  width: 20rem;
+
+.info .intro .logo img {
+  width: 16rem;
   border: #ffffff 0.4rem solid;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.sage-info .intro .summary {
+.info .intro .summary {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.sage-info .intro .summary .main {
+.info .intro .summary .main {
   color: var(--theme-color-5);
-  font-size: var(--font-size-page-header-main);
+  font-size: var(--font-size-m);
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   word-break: keep-all;
   font-weight: 700;
 }
-.sage-info .intro .summary .main span {
-  font-size: var(--font-size-page-header-mid);
+
+.info .intro .summary .main span {
+  font-size: var(--font-size-xs);
   align-content: end;
   font-weight: 400;
 }
 
-.sage-info .intro .summary .sub {
+.info .intro .summary .sub {
   color: var(--theme-color-1);
-  font-size: var(--font-size-page-header-sub);
+  font-size: var(--font-size-3xs);
 }
 
-.sage-info .history {
+.info .history {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 5rem;
 }
-.sage-info .history > * {
+
+.info .history > * {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  flex: 1 1 0;
+  /* flex: 1 1 0; */
 }
-.sage-info .history .title {
-  font-size: var(--font-size-page-body-mid);
+
+.info .history .title {
+  font-size: var(--font-size-ms);
+  font-weight: 700;
 }
-.sage-info .history .content {
-  font-size: var(--font-size-page-body-sub);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.sage-info .history .content,
-.sage-info .history .content ul {
+
+.info .history .content,
+.info .history .content ul,
+.info .history .content ul li {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
+}
+
+.info .history .content {
+  white-space: nowrap;
+  flex-direction: column;
+  flex-shrink: 0;
   gap: 2rem;
 }
-.sage-info .history .content ul li {
-  display: flex;
-  flex-wrap: wrap;
+
+.info .history .content ul {
+  flex-direction: column;
   gap: 1rem;
 }
-.sage-info .history .content ul li p {
-  /* min-width: 20rem; */
+
+.info .history .content ul li {
+  gap: 1rem;
+}
+
+.info .history .content .list-head {
+  font-size: var(--font-size-xs);
+}
+
+.info .history .content .list-body {
+  font-size: var(--font-size-2xs);
 }
 
 /* scroll-section background */
