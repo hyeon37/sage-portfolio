@@ -275,6 +275,15 @@ html {
   font-size: var(--font-size-ms);
 }
 
+.content-area .outline::before {
+  content: "";
+  flex-grow: 1;
+  height: 0.2rem;
+  line-height: 0;
+  margin-left: -20rem;
+  background: var(--theme-color-5);
+}
+
 /* 각 페이지 컨텐츠 */
 .info {
   width: 100%;
@@ -371,14 +380,15 @@ html {
   gap: 2rem;
 }
 
-.info .history .content ul {
+.info .history .content ul,
+.info .history .content ul li {
   flex-direction: column;
   gap: 1rem;
 }
 
-.info .history .content ul li {
+/* .info .history .content ul li {
   gap: 1rem;
-}
+} */
 
 .info .history .content .list-head {
   font-size: var(--font-size-xs);
@@ -460,6 +470,17 @@ html {
   }
 
   .content-area * {
-    color: #000000;
+    color: #000000 !important;
+  }
+
+  .pr-message.line::before,
+  .content-area .outline::before {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #000000;
+  }
+
+  .info .intro .logo img {
+    border: #000000 0.2rem solid;
   }
 }

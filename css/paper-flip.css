@@ -44,10 +44,15 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 [삼각형, 좌하단이 넘어선 사각형, 우상단이 넘어선 사각형, 좌하단 우상단 모두 넘어선 오각형]
 로 이해함
 
+---------
 
 초기 설정
 --paper-width: 종이 크기
 --paper-height: 종이 크기
+--paper-flip-width: 페이지 넘기기 전 종이가 넘겨질 수 있는 영역 표시
+--paper-flip-height: 페이지 넘기기 전 종이가 넘겨질 수 있는 영역 표시
+--paper-clip-width: 페이지 넘긴 후 종이가 넘어간 영역 표시
+--paper-clip-height: 페이지 넘긴 후 종이가 넘어간 영역 표시
 
 .papers:not(:only-child)
 .on이 들어간 경우 현재 페이지 보여주기
@@ -55,12 +60,6 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
 <li class="paper flip"></li>    // 접힌 종이
 <li class="paper on"></li>    // 다음 페이지가 있을 경우 모서리 끝 접힌 영역 노출
 <li class="paper"></li>   // 다음 페이지가 없을 경우 모서리 끝 접힌 영역 노출 안함
-.paper + .paper {
-// 모서리 끝 접힌 영역 노출
-}
-.paper:has(+ .paper.on) {
-// 현재 노출되고 있는 종이의 이전 종이 접힌 영역 표현
-}
 */
 
 :root {
@@ -218,4 +217,46 @@ atan2(y, x) 의 값은 접었을때 우하단에 비는 삼각형 내각 중 좌
   );
   transition-duration: 1s;
   transition-timing-function: linear;
+}
+
+
+@media print {
+  .paper.flip {
+    clip-path: polygon(
+      0 0,
+      var(--paper-width) 0,
+      var(--paper-width) calc(var(--paper-height) - var(--paper-flip-height)),
+      calc(var(--paper-width) - var(--paper-flip-width)) var(--paper-height),
+      0 var(--paper-height)
+    );
+  }
+
+  .paper.flip::after {
+    clip-path: polygon(
+      calc(
+          var(--paper-width) - var(--paper-flip-width) +
+            (
+              var(--paper-flip-width) *
+                cos(
+                  (
+                    2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  )
+                )
+            )
+        )
+        calc(
+          var(--paper-height) -
+            (
+              var(--paper-flip-width) *
+                sin(
+                  (
+                    2 * atan2(var(--paper-flip-height), var(--paper-flip-width))
+                  )
+                )
+            )
+        ),
+      var(--paper-width) calc(var(--paper-height) - var(--paper-flip-height)),
+      calc(var(--paper-width) - var(--paper-flip-width)) var(--paper-height)
+    );
+  }
 }
