@@ -295,11 +295,16 @@ html {
 }
 
 .info .left-area,
-.info .right-area {
+.info .right-area,
+.info .full-area {
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
   gap: 5rem;
+}
+
+.info .full-area {
+  word-break: keep-all;
 }
 
 .info .intro {
@@ -361,7 +366,7 @@ html {
   /* flex: 1 1 0; */
 }
 
-.info .history .title {
+.info .title {
   font-size: var(--font-size-ms);
   font-weight: 700;
 }
@@ -390,11 +395,11 @@ html {
   gap: 1rem;
 } */
 
-.info .history .content .list-head {
+.info .content .list-head {
   font-size: var(--font-size-xs);
 }
 
-.info .history .content .list-body {
+.info .content .list-body {
   font-size: var(--font-size-2xs);
 }
 
