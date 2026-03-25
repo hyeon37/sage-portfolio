@@ -395,12 +395,22 @@ html {
   gap: 1rem;
 } */
 
+.info .presentaion > * {
+  display: flex;
+  gap: 3rem;
+}
+
 .info .content .list-head {
   font-size: var(--font-size-xs);
 }
 
 .info .content .list-body {
   font-size: var(--font-size-2xs);
+}
+
+.info .content .list-body .wrap {
+  white-space: normal;
+  word-break: keep-all;
 }
 
 /* scroll-section background */
