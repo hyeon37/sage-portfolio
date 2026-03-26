@@ -292,6 +292,8 @@ html {
   color: var(--theme-color-5);
   margin-top: 2rem;
   flex-wrap: wrap;
+  row-gap: 5rem;
+  align-content: baseline;
 }
 
 .info .left-area,
@@ -309,9 +311,11 @@ html {
 
 .info .intro {
   display: flex;
-  flex-direction: row;
-  gap: 5rem;
+  row-gap: 1rem;
+  column-gap: 5rem;
   align-items: center;
+  flex-wrap: wrap;
+  height: fit-content;
 }
 
 .info .intro .logo {
