@@ -168,27 +168,27 @@ html {
 }
 
 .gap1 {
-  gap: 1rem;
+  gap: 1rem !important;
 }
 
 .gap2 {
-  gap: 2rem;
+  gap: 2rem !important;
 }
 
 .gap3 {
-  gap: 3rem;
+  gap: 3rem !important;
 }
 
 .gap4 {
-  gap: 4rem;
+  gap: 4rem !important;
 }
 
 .gap5 {
-  gap: 5rem;
+  gap: 5rem !important;
 }
 
 .gap6 {
-  gap: 6rem;
+  gap: 6rem !important;
 }
 
 /* 메인 페이지 */
@@ -375,6 +375,15 @@ html {
   font-weight: 700;
 }
 
+.info .title a {
+  font-size: var(--font-size-2xs);
+  font-weight: 400;
+  color: var(--theme-color-5);
+  text-decoration: none;
+  margin-left: 1rem;
+  pointer-events: all;
+}
+
 .info .history .content,
 .info .history .content ul,
 .info .history .content ul li {
@@ -412,9 +421,21 @@ html {
   font-size: var(--font-size-2xs);
 }
 
-.info .content .list-body .wrap {
+.indent p {
+  text-indent: -2rem;
+  padding-left: 2rem;
+}
+
+.info .content .wrap {
   white-space: normal;
   word-break: keep-all;
+  min-width: 35rem;
+}
+
+.info .cover img {
+  width: 100%;
+  aspect-ratio: auto;
+  min-width: 35rem;
 }
 
 /* scroll-section background */
