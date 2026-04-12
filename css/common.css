@@ -311,11 +311,12 @@ html {
 
 .info .intro {
   display: flex;
-  row-gap: 1rem;
+  row-gap: 2rem;
   column-gap: 5rem;
   align-items: center;
   flex-wrap: wrap;
   height: fit-content;
+  width: 100%;
 }
 
 .info .intro .logo {
